@@ -580,14 +580,12 @@ function changeWhitePosition(nextid, id) {
 }
 
 function changeWhiteKingPosition(nextid, id) {
-  if (nextid !== 'B8' && nextid !== 'D8' && nextid !== 'F8' && nextid !== 'H8') {
     document.getElementById(nextid).src = urlwhiteKing;
     document.getElementById(id).src = urlEmptyCoin;
     currentWhitePlayer = false;
     PlaySound();
     ClearOpacity();
     whoseTurnNow();
-  }
 }
 
 function changeBlackPosition(nextid, id) {
@@ -609,14 +607,13 @@ function changeBlackPosition(nextid, id) {
 }
 
 function changeBlackKingPosition(nextid, id) {
-  if (nextid !== 'A1' && nextid !== 'C1' && nextid !== 'E1' && nextid !== 'G1') {
     document.getElementById(nextid).src = urlblackKing;
     document.getElementById(id).src = urlEmptyCoin;
     currentWhitePlayer = true;
     PlaySound();
     ClearOpacity();
     whoseTurnNow();
-  }
+
 }
 
 /////////////////////////////////////// ClearOpacity /////////////////////////////////////////////////////////////////
@@ -677,7 +674,7 @@ function whiteEating(id, eatingLocationID, nextRightID) {
 
 function whiteKingEating(id, eatingLocationID, nextRightID) {
   if (((eatingLocationID[1] - nextRightID[1] == 1) || (nextRightID[1] - eatingLocationID[1] == 1)) && document.getElementById(id).src === urlwhiteKing && (document.getElementById(nextRightID).src === urlblack || document.getElementById(nextRightID).src === urlblackKing)) {
-    if (eatingLocationID !== 'B8' && eatingLocationID !== 'D8' && eatingLocationID !== 'F8' && eatingLocationID !== 'H8') {
+    // if (eatingLocationID !== 'B8' && eatingLocationID !== 'D8' && eatingLocationID !== 'F8' && eatingLocationID !== 'H8') {
       elementBorder.parentElement.style.borderColor = "";
       document.getElementById(eatingLocationID).src = urlwhiteKing;
       document.getElementById(id).src = urlEmptyCoin;
@@ -689,7 +686,7 @@ function whiteKingEating(id, eatingLocationID, nextRightID) {
       ClearOpacity();
       whoseTurnNow();
       checkWin();
-    }
+    // }
   }
 }
 
@@ -767,7 +764,7 @@ function PlaySoundEating() {
 }
 function PlaySoundKing() {
   if (Mute === false) {
-    const audio = new Audio("./Assets/sounds/success-fanfare-trumpets-6185.mp3");
+    const audio = new Audio("./Assets/sounds/king.mp3");
     audio.play();
   }
 }
@@ -780,10 +777,10 @@ function PlaySoundWin() {
 function checkWin() {
   if (BlackCounter === 0) {
     PlaySoundWin();
-    document.getElementById("showTheWinner").innerHTML = "White Winner!!!";
+    document.getElementById("showTheWinner").innerHTML = "White Won!!!";
   }
   if (WhiteCounter === 0) {
     PlaySoundWin();
-    document.getElementById("showTheWinner").innerHTML = "Black Winner!!!";
+    document.getElementById("showTheWinner").innerHTML = "Black Won!!!";
   }
 }
